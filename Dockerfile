@@ -6,8 +6,9 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies with proper architecture support
+RUN npm install && \
+    npm install @rollup/rollup-linux-arm64-musl --save-optional
 
 # Copy source files
 COPY . .
